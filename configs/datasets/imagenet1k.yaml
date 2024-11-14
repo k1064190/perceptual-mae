@@ -1,0 +1,35 @@
+dataset_config:
+    dataset_name: imagenet1k
+    dataset_builder: imagenet1k
+    val_samples: 1000
+    max_images: 1
+    preprocess:
+        name: vision
+        type: vision
+        vision_transforms:
+            transforms_train:
+                - RandomResizedCrop
+                - RandomHorizontalFlipImageOnly
+                - ToTensor
+                - RandomAugment
+                - Normalise
+            transforms_test:
+                - Resize
+                - ToTensor
+                - Normalise
+            params:
+                RandomResizedCrop:
+                    size: [224, 224]
+                Resize:
+                    size: [224, 224]
+                RandomAugment:
+                    augment_parameters:
+                        - 0.8
+                        - 1.2
+                        - 0.8
+                        - 1.2
+                        - 0.8
+                        - 1.2
+                    do_augmentation: True
+                Normalise:
+                    norm_type: imagenet

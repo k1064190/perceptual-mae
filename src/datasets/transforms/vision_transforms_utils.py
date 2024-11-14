@@ -12,12 +12,8 @@ from src.datasets.base_transforms import BaseTransforms
 
 @registry.register_transforms("Normalise")
 class Normalise(BaseTransforms):
-    def __init__(self, norm_type='tractable_ced'):
-        if norm_type=='imagenet':
-            self.transform= transforms.Normalize(
-                              mean=IMAGE_COLOR_MEAN,
-                              std=IMAGE_COLOR_STD)
-        elif norm_type=='inception':
+    def __init__(self, norm_type='imagenet'):
+        if norm_type=='inception':
             self.transform = transforms.Normalize(
                               mean=INCEPTION_IMAGE_NORMALIZE, 
                               std= INCEPTION_IMAGE_NORMALIZE)
@@ -26,8 +22,9 @@ class Normalise(BaseTransforms):
                               mean=TRACTABLE_CED_MEAN, 
                               std= TRACTABLE_CED_STD)
         else:
-            raise Exception("the following type of normalisation mean and std. : {} cannot be found in src/common/constants.py\
-                             please add mean and std. accordingly".format(norm_type))
+            self.transform= transforms.Normalize(
+                              mean=IMAGE_COLOR_MEAN,
+                              std=IMAGE_COLOR_STD)
 
     def __call__(self, sample):
         if type(sample)==dict:

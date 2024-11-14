@@ -50,8 +50,11 @@ class VisionTransforms(BaseTransforms):
     def __call__(self, x):
         # Support both dict and normal mode
         if isinstance(x, collections.abc.Mapping):
-            x = x["images"]
-            return {"images": self.transform(x)}
+            x = x["image"]
+            # if x is list, then it is a batch of images, transform each image and use torch.stack to stack them
+            if isinstance(x, list):
+                return {"pixel_values": torch.stack([self.transform(image) for image in x])}
+            return {"pixel_values": self.transform(x)}
         else:
             return self.transform(x)
 
