@@ -188,7 +188,7 @@ def build_model(config, *, local_experiment_data_dir=None, ckpt_path=None) -> Ba
     if ckpt_path is None:
         model = model_class(config=config, local_experiment_data_dir=local_experiment_data_dir)
     else:
-        model = model_class.load_from_checkpoint(checkpoint_path=ckpt_path, config=config)
+        model = model_class.load_from_checkpoint(checkpoint_path=ckpt_path, config=config, local_experiment_data_dir=local_experiment_data_dir)
 
     return model
 
