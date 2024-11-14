@@ -9,7 +9,7 @@ user_config:
   experiment_name: mae_test
 
   # # ------------------- S3 ARGS -------------------
-  data_dir: null # default: {current_user_home_dir}/percmae_data
+  data_dir: "/scratch2/cho/workspace/perceptual-mae/op_data" # default: {current_user_home_dir}/percmae_data
   # ^ could change to e.g. /data/percmae_data instead
   s3bucket_name: percmae-storage
   s3key_prefix: null # default: current system username

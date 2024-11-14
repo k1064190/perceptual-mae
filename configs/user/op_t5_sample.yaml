@@ -1,0 +1,20 @@
+user_config:
+    # SAVING CHECKPOINTS
+    save_locally: True
+
+    part_name: perceptual_opt5ae
+    task_type: opae
+    # Name of the experiment, will be used while saving checkpoints
+    # and generating reports
+    experiment_name: opaet5
+
+    data_dir: "./op_data" # default: {current_user_home_dir}/percmae_data
+    # ^ could change to e.g. /data/percmae_data instead
+    # # ------------------- S3 ARGS -------------------
+    s3bucket_name: percmae-storage
+    s3key_prefix: null # default: current system username
+
+    # set AWS env variables:
+    aws_key_region: eu
+    data_bucket_region: eu-central-1
+    image_bucket_region: eu-central-1
